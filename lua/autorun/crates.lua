@@ -7,7 +7,8 @@ Adds the resources
 ---------------------------------------------------------------------------]]
 if (SERVER) then -- I want this up here by its self... Don't judge me.
    function AddResources()
-      resource.AddFile("materials/crates/CRATE_NO_MATERIAL.png")
+      resource.AddFile("materials/crates/CRATE_NO_MATERIAL.png") 
+      -- Ill add this later
    end
 end
 
