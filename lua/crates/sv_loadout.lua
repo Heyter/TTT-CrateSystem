@@ -30,7 +30,7 @@ net.Receive( "SetNewLoadOut", function( len, ply )
    ply:SetLoadOut( weapon, weaponType )
 end )
 
---[[
+
 -- Gives the players
 hook.Add("Loadout", "PlayersLoadOut", function()
    for k,v in pairs( weaponTypes ) do
@@ -48,7 +48,7 @@ hook.Add("Loadout", "PlayersLoadOut", function()
       end
    end
 end )
-]]
+
 
 net.Receive("SetNewMaterial",function( len, ply) 
    local materialStr = net.ReadString()

@@ -52,10 +52,9 @@ Tells the server to drop a crate
 
 It is also takes the number of players into the equation.
 ---------------------------------------------------------------------------]]
---[[
+
 hook.Add( "Think", "CrateDrop", function()
    if ( math.ceil( CurTime()) % ( 120 - ( player.GetCount() * 2 ) ) == 12 ) then
       GiveCrate()
    end
 end )
-]]

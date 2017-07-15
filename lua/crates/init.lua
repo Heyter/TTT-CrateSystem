@@ -62,7 +62,7 @@ hook.Add("Initialize", "StartUpLogs", function()
    StartServerData()
 end )
 
---[[
+
 -- Just crate basic player data
 hook.Add("PlayerInitialSpawn", "PlayerDataSetUp", function( ply )
    ply:SetUpPlayerData() // Crates there folder.
@@ -76,5 +76,5 @@ hook.Add("PlayerSay", "OpenTheCrateMenu", function( ply, text, teamChat )
       end
    end
 end )
-]]
+
 

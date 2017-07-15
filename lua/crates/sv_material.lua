@@ -41,7 +41,6 @@ function pmeta:GetSpecialMaterial( weapon )
    end
 end
 
---[[
 hook.Add( "PlayerSwitchWeapon", "SetWeaponMaterialForPlayers", function( ply, old, new )
       local materialStr = ""
       if IsPrimaryWeapon(new) then 
@@ -60,4 +59,3 @@ hook.Add( "PlayerSwitchWeapon", "SetWeaponMaterialForPlayers", function( ply, ol
          CrateWeaponMaterial( new, materialStr )
       end
 end )
-]]
