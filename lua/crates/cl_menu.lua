@@ -54,7 +54,7 @@ function OpenCrateMenu()
 end
 
 net.Receive( "CrateMenuOpen", function( len )
-   UpDateItems
+   UpDateItems()
    
    OpenCrateMenu()
 end ) 
