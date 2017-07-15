@@ -16,6 +16,7 @@ GarrBearsCrates.Crates.Drops = {}
 
 -- Where or not to do logging
 GarrBearsCrates.Settings.Logging = true
+GarrBearsCrates.Settings.ConsoleLogging = true -- Prints logs to console too
 
 -- Special crate settings
 GarrBearsCrates.Settings.SpecialCrate = false

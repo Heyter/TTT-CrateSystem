@@ -32,11 +32,14 @@ if (GarrBearsCrates.Settings.Logging) then
 
       if date != DAY then
          StartDataLog()
-
       end
 
       --------------------------- The File -------------- The Time ----- The Data - New Line -- idk why I did this
       file.Append( "crates/logs/" .. date .. ".txt", "[" .. time .. "] " .. data .. "\n" )
+
+      if (GarrBearsCrates.Settings.ConsoleLogging) then
+         print( "[" .. time .. "] " .. data )
+      end
    end
 else
    function StartDataLog()
@@ -262,7 +265,17 @@ function pmeta:GiveItemToPlayer( itemID, amount )
       amount = 1
    end
 
+   file.CreateDir("crates/PLAYER_"..self:SteamID64() )
+
    if file.Exists( path, "DATA" ) then
+      local Data = file.Read( path, "DATA" )
+      
+      if Data == "" then 
+         file.Write( path, amount )
+      else
+         file.Write( path, (tonumber(Data) + amount) )
+      end
+   else
       local Data = file.Read( path, "DATA" )
       
       if Data == nil then 

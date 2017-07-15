@@ -1,23 +1,3 @@
-local pmeta = FindMetaTable("Player")
-
-function pmeta:GiveItemToPlayer( itemID, amount )
-   local path = "crates/PLAYER_"..self:SteamID64().."/ITEM_"..itemID..".txt"
-
-   if amount == nil then 
-      amount = 1
-   end
-
-   if file.Exists( path, "DATA" ) then
-      local Data = file.Read( path, "DATA" )
-      
-      if Data == nil then 
-         file.Write( path, amount )
-      else
-         file.Write( path, (tonumber(data) + amount) )
-      end
-   end
-end
-
 --[[-------------------------------------------------------------------------
 Gets the crate type...
 
@@ -53,11 +33,12 @@ function GiveCrate()
    if player.GetCount() == 0 then 
       return false                
    end                            
-
-   local PlayerThatGetsCrate = math.random(player.GetCount())
-
+   local playerThatGetsCrate = table.Random( player.GetAll() )
+   
    ---------------------- It ↓↓ looks like a sad face ):
-   Player(PlayerThatGetsCrate):GiveItemToPlayer(GetCrateType(), 1)
+   playerThatGetsCrate:GiveItemToPlayer(GetCrateType(), 1)
+
+   LogData("The server gave " .. playerThatGetsCrate:Nick() .. " a crate.")
 end
 
 --[[-------------------------------------------------------------------------
@@ -66,11 +47,11 @@ Tells the server to drop a crate
 local GiveCrateToPlayer = true
 hook.Add( "Think", "CrateDrop", function()
    if ( math.ceil( CurTime()) % ( 120 - ( player.GetCount() * 2 ) ) == 1 ) then
-      GiveCrateToPlayer = true -- So it doesn't give crates inbettween all the ticks of that secound... if that makes scenese
       if GiveCrateToPlayer then
+         GiveCrateToPlayer = false -- So it doesn't give crates inbettween all the ticks of that secound... if that makes scenese
          GiveCrate()
       end
    else
-      GiveCrateToPlayer = false
+      GiveCrateToPlayer = true
    end
 end )
