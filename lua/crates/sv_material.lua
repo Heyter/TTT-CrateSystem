@@ -43,7 +43,7 @@ end
 
 hook.Add( "PlayerSwitchWeapon", "SetWeaponMaterialForPlayers", function( ply, old, new )
       local materialStr = ""
-      if IsPrimaryWeapon(new) then 
+      if IsPrimaryWeapon( new ) then 
          materialStr = ply:GetPrimMaterial( new )
       elseif IsSecondaryWeapon( new ) then
          materialStr = ply:GetSecoundMaterial( new )

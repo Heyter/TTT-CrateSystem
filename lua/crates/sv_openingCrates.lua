@@ -41,7 +41,7 @@ Gives common cards to a player
 function pmeta:GiveCommon( amount )
    for i=1,amount do
       local item = table.Random( GarrBearsCrates.Crates.Common ) -- I might make it the items show themself but idk
-      self:AddItem( item )
+      self:GiveItemToPlayer( item )
       
       LogData("[" .. self:SteamID() .. "]" .. self:Nick() .. " Got " .. item .. " from opening a crate.")
 
@@ -59,7 +59,7 @@ Gives common cards to a player
 function pmeta:GiveRare( amount )
    for i=1,amount do
       local item = table.Random( GarrBearsCrates.Crates.Rare )
-      self:AddItem( item )
+      self:GiveItemToPlayer( item )
       
       LogData("[" .. self:SteamID() .. "]" .. self:Nick() .. ": " .. " Got " .. item .. " from opening a crate.")
 
@@ -77,7 +77,7 @@ Gives common cards to a player
 function pmeta:GiveEpic( amount )
    for i=1,amount do
       local item = table.Random( GarrBearsCrates.Crates.Epic )
-      self:AddItem( item )
+      self:GiveItemToPlayer( item )
 
       LogData("[" .. self:SteamID() .. "]" .. self:Nick() .. ": " .. " Got " .. item .. " from opening a crate.")
 
@@ -94,7 +94,7 @@ Gives common cards to a player
 ---------------------------------------------------------------------------]]
 function pmeta:GiveLengandy() -- You can only give one... and I know ;)
    local item = table.Random( GarrBearsCrates.Crates.Lengandy )
-   self:AddItem( item )
+   self:GiveItemToPlayer( item )
 
    LogData("[" .. self:SteamID() .. "]" .. self:Nick() .. ": " .. " Got " .. item .. " from opening a crate.")
 

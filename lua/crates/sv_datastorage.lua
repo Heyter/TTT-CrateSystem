@@ -97,7 +97,6 @@ function pmeta:SetUpPlayerData()
       local PlayerData = PlayerBasicData // Might Add Stuff later
 
       file.Write( path, PlayerData )
-      file.Write( path, self:Nick() )
    end
 
    -- I didn't want to use a for loop in a function that might be called a lot at one time (A lot of people joining at the same time)
@@ -232,6 +231,7 @@ Gets the amount of a item a player has.
                • number Item amount
 ---------------------------------------------------------------------------]]
 function pmeta:GetPlayerItem( itemID )
+
    local path = "crates/PLAYER_"..self:SteamID64().."/ITEM_"..itemID..".txt"
 
    if file.Exists( path, "DATA") then
@@ -241,6 +241,8 @@ function pmeta:GetPlayerItem( itemID )
       end
 
       return tonumber(Data) -- Number of items
+   else
+      return 0
    end
 end
 
@@ -253,7 +255,7 @@ Gives a player an item or items
                • number itemID
                • number amount
 ---------------------------------------------------------------------------]]
-function pmeta:AddItem( itemID, amount ) -- AddItem is client side in glua :)
+function pmeta:GiveItemToPlayer( itemID, amount )
    local path = "crates/PLAYER_"..self:SteamID64().."/ITEM_"..itemID..".txt"
 
    if amount == nil then 
@@ -269,7 +271,9 @@ function pmeta:AddItem( itemID, amount ) -- AddItem is client side in glua :)
          file.Write( path, (tonumber(data) + amount) )
       end
    end
-end
+end 
+
+
 
 --[[-------------------------------------------------------------------------
 Takes a item or items from a player.
@@ -396,7 +400,7 @@ function pmeta:BoughtItem( shopID )
    local money = 0
 
    self:SubMoney( item[4] )
-   self:AddItem( item[3] )
+   self:GiveItemToPlayer( item[3] )
    if GarrBearsCrates.Settings.ShopsTax then
       money = math.Round( item[4] - (taxAmount * item[4]) ) -- I don't deal with cents #DeathToThePenny
       AddMoneyFromID( item[1], money )

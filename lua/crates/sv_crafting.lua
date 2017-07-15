@@ -72,8 +72,8 @@ function pmeta:StartCraft( item_one, item_two )
    self:SubItem( item_one, 1 )
    self:SubItem( item_two, 1 )
 
-   self:AddItem(item, 1) -- AddItem is a client function and this is a server one
-
+   self:GiveItemToPlayer(item, 1)
+   
    return CanCraft
 end
 

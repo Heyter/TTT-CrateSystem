@@ -2,7 +2,7 @@ local pmeta = FindMetaTable("Player")
 
 function pmeta:AddItemCommand( ply, item, amount )
    if self:IsAdmin() then
-      ply:AddItem( item, amount )
+      ply:GiveItemToPlayer( item, amount )
 
       LogData( self:Nick() .. " [" .. self:SteamID() .. "] Gave " .. ply:Nick() .. " [" .. ply:SteamID() .. "] Amount:" .. amount .. " Item: " .. item )
    end

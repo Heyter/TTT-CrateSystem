@@ -41,6 +41,7 @@ AddCSLuaFile("cl_loadout.lua")
 AddCSLuaFile("cl_shop.lua")
 AddCSLuaFile("cl_admintab.lua")
 
+
 -- include main server code
 include("shared.lua")
 include("MaterialSetter.lua")
@@ -57,11 +58,8 @@ include("sv_material.lua")
 
 -- For setting up logging data
 hook.Add("Initialize", "StartUpLogs", function()
-   file.CreateDir("crates")
-
    StartServerData()
 end )
-
 
 -- Just crate basic player data
 hook.Add("PlayerInitialSpawn", "PlayerDataSetUp", function( ply )
