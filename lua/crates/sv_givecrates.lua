@@ -30,12 +30,13 @@ end
 Gives the crate to the player
 ---------------------------------------------------------------------------]]
 function GiveCrate() 
-   if player.GetCount() == 0 then 
+   if player.GetCount() <= 2 then 
+      LogData("Would have given a crate but there is not enough players")
       return false                
-   end                            
+   end
+
    local playerThatGetsCrate = table.Random( player.GetAll() )
    
-   ---------------------- It ↓↓ looks like a sad face ):
    playerThatGetsCrate:GiveItemToPlayer(GetCrateType(), 1)
 
    LogData("The server gave " .. playerThatGetsCrate:Nick() .. " a crate.")

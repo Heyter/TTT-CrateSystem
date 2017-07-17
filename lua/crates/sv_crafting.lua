@@ -78,8 +78,8 @@ function pmeta:StartCraft( item_one, item_two )
 end
 
 net.Receive("RequestCrafting", function( len, ply )
-   local Item_One = net.ReadInt()
-   local Item_Two = net.ReadInt()
+   local Item_One = net.ReadInt(32)
+   local Item_Two = net.ReadInt(32)
 
    ply:StartCraft( Item_One, Item_Two )
 end )

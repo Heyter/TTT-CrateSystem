@@ -222,10 +222,14 @@ Returns if the item is a crate.
                • number item
 ---------------------------------------------------------------------------]]
 function IsCrate( item )
-   if (item > 6) and ( item < 9 ) then
-      return true
-   elseif item == 16 then
-      return true
+   if type(item) == "number" then
+      if (item >= 4) and ( item <= 8 ) then
+         return true
+      elseif item == 16 then
+         return true
+      else
+         return false
+      end
    else
       return false
    end
@@ -255,7 +259,7 @@ Gets weather the item is a weapon
                • boolean weather the item is a weapon
 ---------------------------------------------------------------------------]]
 function IsCrateWeapon( item )
-   if item > 1000 and item <= GarrBearsCrates.Weapon.Amount then
+   if type( item ) == "string" then -- Only wepons are strings
       return true
    else
       return false

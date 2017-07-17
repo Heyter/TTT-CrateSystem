@@ -46,10 +46,10 @@ net.Receive( "AddItemCommand", function( len, Calling )
    if typeOfItem == "string" then
       item = net.ReadString()
    else
-      item = net.ReadInt()
+      item = net.ReadInt(32)
    end
 
-   amount = net.ReadInt()
+   amount = net.ReadInt(32)
 
    Calling:AddItemCommand( ply, item, amount )
 end )
@@ -63,24 +63,24 @@ net.Receive( "TakeItemCommand", function( len, Calling )
    if typeOfItem == "string" then
       item = net.ReadString()
    else
-      item = net.ReadInt()
+      item = net.ReadInt(32)
    end
 
-   amount = net.ReadInt()
+   amount = net.ReadInt(32)
 
    Calling:TakeItemCommand( ply, item, amount )
 end )
 
 net.Receive( "GiveMoneyCommand", function( len, Calling )   
    local ply = net.ReadEntity() 
-   local amount = net.ReadInt()
+   local amount = net.ReadInt(32)
 
    Calling:GiveMoneyCommand( ply, amount )
 end )
 
 net.Receive( "TakeMoneyCommand", function( len, Calling )
    local ply = net.ReadEntity() 
-   local amount = net.ReadInt()
+   local amount = net.ReadInt(32)
 
    Calling:TakeMoneyCommand( ply, amount )
 end )

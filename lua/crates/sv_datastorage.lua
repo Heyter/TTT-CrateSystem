@@ -278,10 +278,10 @@ function pmeta:GiveItemToPlayer( itemID, amount )
    else
       local Data = file.Read( path, "DATA" )
       
-      if Data == nil then 
+      if Data == nil or Data == 0 then 
          file.Write( path, amount )
       else
-         file.Write( path, (tonumber(data) + amount) )
+         file.Write( path, (tonumber(Data) + amount) )
       end
    end
 end 
@@ -439,7 +439,7 @@ function GetShopItemsForCleint()
       shopItem = file.Read("crates/ShopData/" .. v, "DATA")
       shopItem = util.JSONToTable(shopItem)
 
-      table.insert(shopItems, shopItem)
+      table.insert(shopItems, nil, shopItem)
    end
 
    return shopItems

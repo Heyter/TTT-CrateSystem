@@ -4,8 +4,8 @@ Words so gmod thinks this is a not a blank file
 
 function StartCrafting( Item_One, Item_TWo )
    net.Start( "RequestCrafting" )
-      net.WriteInt( Item_One )
-      net.WriteInt( Item_Two )
+      net.WriteInt( Item_One, 32 )
+      net.WriteInt( Item_Two, 32 )
    net.SendToServer()
 end
 

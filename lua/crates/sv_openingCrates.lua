@@ -271,7 +271,7 @@ end
 
 -- Will open the crate and give items if valid
 net.Receive("OpeningCrates", function ( len, ply )
-   local crateType = net.ReadInt()
+   local crateType = net.ReadInt(32)
 
    if ply:CanOpenCrate( crateType ) then
       ply:OpenCrate( crateType )

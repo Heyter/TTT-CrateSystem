@@ -12,25 +12,21 @@ Gets the objects material
                • Material the objects material
 ---------------------------------------------------------------------------]]
 function GetItemMaterial( object, ext )
-   local materialReturn = nil
+   local materialReturn = false
    local isWeapon = false
 
-   if IsCrateWeapon( object ) and not ext then
-      materialReturn = Material( "materials/crates/weapon/crate_weapon_" .. object .. ".png")
-      isWeapon = true
-   else
-      materialReturn = Material( "materials/crates/weapon/crate_weapon_" .. object .. "." .. ext )
-      isWeapon = true
+   if not ext then
+      ext = ".png"
    end
 
-   if not ext and not isWeapon then
-      materialReturn = Material( "materials/crates/crate_material_object_" .. object .. ".png" )
-   elseif not isWeapon then
-      materialReturn = Material( "materials/crates/crate_material_object_" .. object .. "." .. ext )
+   if IsCrateWeapon( object ) then
+      materialReturn = "materials/crates/weapon/crate_weapon_object_" .. object .. ext
+   else
+      materialReturn = "materials/crates/crate_material_object_" .. object .. ext
    end
 
    if not materialReturn then
-      return Material( "materials/crates/CRATE_NO_MATERIAL.png" )
+      return "materials/crates/CRATE_NO_MATERIAL.png" 
    else
       return materialReturn
    end

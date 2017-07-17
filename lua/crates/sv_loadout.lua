@@ -9,7 +9,7 @@ Sends the players loadout to the client (I hate network stuff BTW)
 function CrateLoadOutItems( ply )
    local itemTable = {}
    for k,v in pairs( weaponTypes ) do 
-      table.insert( itemTable, file.Read( "crates/PLAYER_" .. ply:SteamID64() .. "weaponloadout/" .. v .. ".txt", "DATA" ) )
+      table.insert( itemTable, nil, file.Read( "crates/PLAYER_" .. ply:SteamID64() .. "weaponloadout/" .. v .. ".txt", "DATA" ) )
    end
 
    net.Start("SendLoadOutItems")

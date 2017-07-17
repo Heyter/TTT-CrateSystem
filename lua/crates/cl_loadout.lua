@@ -4,6 +4,10 @@ net.Receive( "SendLoadOutItems", function( len )
    loadOutItems = net.ReadTable()
 end )
 
+function IsCrateWeapon( item ) 
+   return ( type( item ) == "string" )
+end 
+
 --[[-------------------------------------------------------------------------
 Gets the load out items for the player.
 ---------------------------------------------------------------------------]]

@@ -10,9 +10,9 @@ function AddItemsToPlayerCommmand( ply, item, amount )
       if type(item) == "string" then
          net.WriteString( item )
       else
-         net.WriteInt( item )
+         net.WriteInt( item, 32 )
       end
-      net.WriteInt( amount )
+      net.WriteInt( amount, 32 )
    net.SendToServer()
 end 
 
@@ -27,9 +27,9 @@ function SubItemFromPlayerCommand( ply, item, amount )
       if type(item) == "string" then
          net.WriteString( item )
       else
-         net.WriteInt( item )
+         net.WriteInt( item, 32 )
       end
-      net.WriteInt( amount )
+      net.WriteInt( amount, 32 )
    net.SendToServer()
 end
 
@@ -39,7 +39,7 @@ Gives money to the player
 function GiveMoneyToPlayerCommand( ply, amount )
    net.Start("GiveMoneyCommand")
       net.WriteEntity( ply )
-      net.WriteInt( amount )
+      net.WriteInt( amount, 32 )
    net.SendToServer()
 end
 
@@ -49,7 +49,7 @@ Takes Money from the player
 function TakeMoneyToPlayerCommand( ply, amount )
    net.Start("TakeMoneyCommand")
       net.WriteEntity( ply )
-      net.WriteInt( amount )
+      net.WriteInt( amount, 32 )
    net.SendToServer()
 end
 

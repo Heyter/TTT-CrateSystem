@@ -3,18 +3,6 @@ I don't know how I want to do this.
 ---------------------------------------------------------------------------]]
 local pmeta = FindMetaTable("Player")
 
-function pmeta:SendMoeny()
-   net.Start("SendMoney")
-      net.WriteInt( self:GetMoney() )
-   net.Send( self )
-end
-
-function pmeta:SendShopItems()
-   net.Start("SendShopItems")
-      net.WriteTable( GetShopItemsForCleint )
-   net.Send( self )
-end
-
 function pmeta:SellItemToShop( item, price )
    if self:HasItem( item ) then
       self:SoldItem( item, price )
@@ -28,10 +16,16 @@ function pmeta:BuyItemFromShop( shopID )
 end 
 
 net.Receive("GetMoney", function( len, ply )
-   ply:SendMoney()
+   local money = ply:GetMoney() or 0
+
+   net.Start("SendMoney")
+      net.WriteInt( money, 32 )
+   net.Send( ply )
 end )
 
 net.Receive("GetShopItems", function( len, ply )
-   ply:SendShopItems()
+   net.Start("SendShopItems")
+      net.WriteTable( GetShopItemsForCleint() )
+   net.Send( ply )
 end )
 
